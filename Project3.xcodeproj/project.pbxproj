@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		135099841FD14FDA0069037A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135099831FD14FDA0069037A /* LogInViewController.swift */; };
-		1350998F1FD150480069037A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135099871FD150460069037A /* ViewController.swift */; };
 		135099901FD150480069037A /* InterestBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 135099881FD150460069037A /* InterestBox.m */; };
 		135099911FD150480069037A /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135099891FD150460069037A /* QRScanViewController.swift */; };
 		135099921FD150480069037A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350998A1FD150460069037A /* RegisterViewController.swift */; };
@@ -19,6 +18,7 @@
 		135099981FD150C70069037A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135099971FD150C70069037A /* Main.storyboard */; };
 		1350999A1FD151890069037A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 135099991FD151890069037A /* Info.plist */; };
 		1350999C1FD21B580069037A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350999B1FD21B580069037A /* Restaurant.swift */; };
+		1350999E1FD35A6A0069037A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350999D1FD35A6A0069037A /* ViewController.swift */; };
 		139D53541FD14E1A0088D2F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139D53531FD14E1A0088D2F3 /* AppDelegate.swift */; };
 		139D535B1FD14E1B0088D2F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139D535A1FD14E1B0088D2F3 /* Assets.xcassets */; };
 		139D535E1FD14E1B0088D2F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 139D535C1FD14E1B0088D2F3 /* LaunchScreen.storyboard */; };
@@ -29,7 +29,6 @@
 		135099831FD14FDA0069037A /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		135099851FD150450069037A /* Project3-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project3-Bridging-Header.h"; sourceTree = "<group>"; };
 		135099861FD150450069037A /* InterestBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestBox.h; sourceTree = "<group>"; };
-		135099871FD150460069037A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../Project_3/BuildingYourFirstARExperience/ARKitBasics/ViewController.swift; sourceTree = "<group>"; };
 		135099881FD150460069037A /* InterestBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestBox.m; sourceTree = "<group>"; };
 		135099891FD150460069037A /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		1350998A1FD150460069037A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		135099971FD150C70069037A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		135099991FD151890069037A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1350999B1FD21B580069037A /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		1350999D1FD35A6A0069037A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		139D53501FD14E1A0088D2F3 /* Project3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		139D53531FD14E1A0088D2F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		139D535A1FD14E1B0088D2F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +82,7 @@
 		139D53521FD14E1A0088D2F3 /* Project3 */ = {
 			isa = PBXGroup;
 			children = (
+				1350999D1FD35A6A0069037A /* ViewController.swift */,
 				135099831FD14FDA0069037A /* LogInViewController.swift */,
 				1350998E1FD150470069037A /* Assets.scnassets */,
 				1350998B1FD150460069037A /* ChartCreator.swift */,
@@ -91,7 +92,6 @@
 				1350998D1FD150470069037A /* MainViewController.swift */,
 				135099891FD150460069037A /* QRScanViewController.swift */,
 				1350998A1FD150460069037A /* RegisterViewController.swift */,
-				135099871FD150460069037A /* ViewController.swift */,
 				139D53531FD14E1A0088D2F3 /* AppDelegate.swift */,
 				135099971FD150C70069037A /* Main.storyboard */,
 				139D535A1FD14E1B0088D2F3 /* Assets.xcassets */,
@@ -252,13 +252,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1350999E1FD35A6A0069037A /* ViewController.swift in Sources */,
 				1350999C1FD21B580069037A /* Restaurant.swift in Sources */,
 				135099941FD150480069037A /* IntrestBox.swift in Sources */,
 				135099911FD150480069037A /* QRScanViewController.swift in Sources */,
 				135099921FD150480069037A /* RegisterViewController.swift in Sources */,
 				135099901FD150480069037A /* InterestBox.m in Sources */,
 				139D53541FD14E1A0088D2F3 /* AppDelegate.swift in Sources */,
-				1350998F1FD150480069037A /* ViewController.swift in Sources */,
 				135099841FD14FDA0069037A /* LogInViewController.swift in Sources */,
 				135099931FD150480069037A /* ChartCreator.swift in Sources */,
 				135099951FD150480069037A /* MainViewController.swift in Sources */,
