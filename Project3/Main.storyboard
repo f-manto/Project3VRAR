@@ -413,14 +413,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-WF-5Ux">
-                                <rect key="frame" x="63" y="84" width="248" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="User"/>
-                                    <segment title="Restaurant"/>
-                                </segments>
-                            </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raW-pu-pi9">
                                 <rect key="frame" x="16" y="167" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -455,14 +447,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Go"/>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-WF-5Ux">
+                                <rect key="frame" x="63" y="84" width="248" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="User"/>
+                                    <segment title="Restaurant"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="anB-Ry-4uu"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="sJo-OS-vOQ" id="kCB-Bl-HkS"/>
+                        <outlet property="fullNameField" destination="raW-pu-pi9" id="c98-LO-GHc"/>
+                        <outlet property="passwordField" destination="uKZ-Fj-Bfk" id="Y7M-aZ-9wB"/>
+                        <outlet property="passwordFieldC" destination="4Tx-gd-YbZ" id="fjx-ER-UVT"/>
+                        <outlet property="userType" destination="dLY-WF-5Ux" id="gVN-7R-21m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyL-rr-wtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-204" y="555"/>
+            <point key="canvasLocation" x="-204" y="554.57271364317842"/>
         </scene>
         <!--Lost password-->
         <scene sceneID="Kei-SD-01d">
