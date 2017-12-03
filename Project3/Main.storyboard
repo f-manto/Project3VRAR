@@ -79,6 +79,14 @@
                                     <segue destination="hTU-tA-nQG" kind="show" id="eoL-7y-urP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pk-8f-zKF">
+                                <rect key="frame" x="161" y="617" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="logOut:" destination="D8o-Qf-gLR" eventType="touchUpInside" id="T44-bl-GLv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="kJe-OA-iOJ"/>
@@ -527,7 +535,7 @@
         <!--Log In-->
         <scene sceneID="swS-4g-eWM">
             <objects>
-                <viewController id="eGn-KF-m6l" customClass="LogInViewController" customModule="Project3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogIn" id="eGn-KF-m6l" customClass="LogInViewController" customModule="Project3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0yY-F2-LTL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
