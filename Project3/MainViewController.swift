@@ -19,6 +19,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
     
     let URL_LOAD_RESTAURANTS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/load_restaurants"
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
         loadRestaurants()
         
+        let preferences = UserDefaults.standard
+        self.nameLabel.text = preferences.object(forKey: "userName") as? String
         
-        
-
 
     }
     

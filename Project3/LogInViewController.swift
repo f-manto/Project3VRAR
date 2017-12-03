@@ -19,6 +19,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var userType: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,7 +48,7 @@ class LogInViewController: UIViewController {
         
         let parameters: Parameters=[
             "email": emailField.text!,
-            "type": "restaurant",
+            "type": userT!,
             "password": passwordField.text!
         ]
         //making a post request
@@ -64,10 +65,12 @@ class LogInViewController: UIViewController {
                     //if there is no error
                     let error = jsonData.value(forKey: "error") as! String
                     if (error == "yes") {
-                        print(jsonData.value(forKey: "message") as! String)
-//                        self.labelMessage.text = jsonData.value(forKey: "message") as! String
+                        let alert = UIAlertController(title: "Error", message: jsonData.object(forKey: "message") as? String, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                            NSLog("The \"OK\" alert occured.")
+                        }))
+                        self.present(alert, animated: true, completion: nil)
                     } else {
-                        
                         //getting the user from response
 //                        let user = jsonData.value(forKey: "user") as! NSDictionary
                         
@@ -78,15 +81,22 @@ class LogInViewController: UIViewController {
                         let userEmail = self.emailField.text
                         let preferences = UserDefaults.standard
                         preferences.set(userEmail, forKey: "userEmail")
+                        preferences.set(userName, forKey: "userName")
+                        preferences.set(userT, forKey: "userType")
                         
                         //saving user values to defaults
-//                        self.defaultValues.set(userName, forKey: "name")
+//                      self.defaultValues.set(userName, forKey: "name")
                         
-////                        switching the screen
-                        let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! UIViewController
-                        self.navigationController?.pushViewController(mainViewController, animated: true)
-
-                        self.dismiss(animated: false, completion: nil)
+//                      switching the screen
+                        if (userT == "user") {
+                            let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! UIViewController
+                            self.navigationController?.pushViewController(mainViewController, animated: true)
+                            self.dismiss(animated: false, completion: nil)
+                        } else {
+                            let mainRestViewController = self.storyboard?.instantiateViewController(withIdentifier: "MainRest") as! UIViewController
+                            self.navigationController?.pushViewController(mainRestViewController, animated: true)
+                            self.dismiss(animated: false, completion: nil)
+                        }
                     }
                 }
         }
