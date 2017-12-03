@@ -40,6 +40,14 @@ class RegisterViewController: UIViewController {
         }else{
             userT = "user"
         }
+        
+        if (((passwordField.text)?.count)! < 8){
+            let alert = UIAlertController(title: "Error", message: "Password should be at least 8 characters.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
    
         if (passwordField.text != passwordFieldC.text) {
             
@@ -74,14 +82,23 @@ class RegisterViewController: UIViewController {
                     let error = jsonData.value(forKey: "error") as! String
                     if (error == "yes") {
                         print(jsonData.value(forKey: "message") as! String)
-                      
+                        let errmsg = jsonData.value(forKey: "message") as! String
+                        if (errmsg == "User already exists"){
+                            let alert = UIAlertController(title: "Error", message: "Email address already in use.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                            NSLog("The \"OK\" alert occured.")
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                        }
                     } else {
-                        let userName = jsonData.value(forKey: "name") as! String
+                        let userName = self.fullNameField.text!
                         print(userName)
                         
                         let userEmail = self.emailField.text
                         let preferences = UserDefaults.standard
                         preferences.set(userEmail, forKey: "userEmail")
+                        preferences.set(userName, forKey: "userName")
+                        
         
                         let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! UIViewController
                         self.navigationController?.pushViewController(mainViewController, animated: true)
