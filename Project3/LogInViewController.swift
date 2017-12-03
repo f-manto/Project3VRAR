@@ -167,7 +167,6 @@ class LogInViewController: UIViewController {
     @IBAction func next(_ sender: Any) {
                                 let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! UIViewController
                                 self.navigationController?.pushViewController(mainViewController, animated: true)
-        
                                 self.dismiss(animated: false, completion: nil)
     }
 }

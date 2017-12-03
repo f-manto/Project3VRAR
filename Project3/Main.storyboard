@@ -79,6 +79,14 @@
                                     <segue destination="hTU-tA-nQG" kind="show" id="eoL-7y-urP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pk-8f-zKF">
+                                <rect key="frame" x="161" y="617" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="logOut:" destination="D8o-Qf-gLR" eventType="touchUpInside" id="T44-bl-GLv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="kJe-OA-iOJ"/>
@@ -369,7 +377,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qU-3p-6f8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ero-l1-1wX" customClass="InterestBox">
                                         <rect key="frame" x="67" y="48" width="240" height="240"/>
@@ -527,7 +535,7 @@
         <!--Log In-->
         <scene sceneID="swS-4g-eWM">
             <objects>
-                <viewController id="eGn-KF-m6l" customClass="LogInViewController" customModule="Project3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogIn" id="eGn-KF-m6l" customClass="LogInViewController" customModule="Project3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0yY-F2-LTL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -593,13 +601,6 @@
                                     <action selector="next:" destination="eGn-KF-m6l" eventType="touchUpInside" id="YTz-pS-rbC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-fh-1bA">
-                                <rect key="frame" x="16" y="506" width="343" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="0.023286350454939653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-R1-0Bv">
                                 <rect key="frame" x="134" y="356" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -625,7 +626,6 @@
                         <outlet property="emailField" destination="sYQ-tS-ydY" id="gzw-dP-XPJ"/>
                         <outlet property="passwordField" destination="rol-QJ-iVy" id="HvN-3v-jzW"/>
                         <outlet property="userType" destination="vtc-nO-ZKn" id="VUp-Kx-LZ8"/>
-                        <outlet property="warningLabel" destination="GBx-fh-1bA" id="xcF-z4-W1W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shQ-7m-Mhn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -848,6 +848,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7VD-JT-elB"/>
+        <segue reference="eoL-7y-urP"/>
     </inferredMetricsTieBreakers>
 </document>

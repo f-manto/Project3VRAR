@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import Alamofire
 
+let URL_USER_LOGOUT = "http://gmonna.pythonanywhere.com/rest_api/v1.0/logout"
+
 class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     let locationManager = CLLocationManager()
     let companyName = ["apple", "amazon"]
@@ -160,4 +162,40 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
 
         }
     }
+    
+    @IBAction func logOut(_ sender: Any) {
+        
+        let preferences = UserDefaults.standard
+        let userEmail = preferences.object(forKey: "userEmail") as! String
+        
+        let parameters: Parameters=[
+            "email": userEmail,
+            ]
+        
+        Alamofire.request(URL_USER_LOGOUT, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
+            {
+                response in
+                //printing response
+                print("Response:")
+                print(response)
+                
+                //getting the json value from the server
+                if let result = response.result.value {
+                    let jsonData = result as! NSDictionary
+                    
+                    //if there is no error
+                    let error = jsonData.value(forKey: "error") as! String
+                    if (error == "yes") {
+                        print(jsonData.value(forKey: "message") as! String)
+                    }
+                    else{
+                        let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "LogIn") as! UIViewController
+                        self.navigationController?.pushViewController(mainViewController, animated: true)
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                }
+        }
+       
+    }
 }
+
