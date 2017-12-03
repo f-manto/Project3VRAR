@@ -23,6 +23,10 @@
 		139D535B1FD14E1B0088D2F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 139D535A1FD14E1B0088D2F3 /* Assets.xcassets */; };
 		139D535E1FD14E1B0088D2F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 139D535C1FD14E1B0088D2F3 /* LaunchScreen.storyboard */; };
 		83EC17B4D551018ED02A0D18 /* Pods_Project3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5601E3149072233C89E49324 /* Pods_Project3.framework */; };
+		E94CFDF51FD3740100549E06 /* LostPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94CFDF41FD3740100549E06 /* LostPasswordViewController.swift */; };
+		E94CFDF71FD3899B00549E06 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94CFDF61FD3899B00549E06 /* UserSettingsViewController.swift */; };
+		E9FC11221FD3C34900668311 /* MainRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC11211FD3C34900668311 /* MainRestViewController.swift */; };
+		E9FC11241FD3DB3500668311 /* RestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		49169294F664CA4354DEC0B8 /* Pods-Project3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project3/Pods-Project3.release.xcconfig"; sourceTree = "<group>"; };
 		5601E3149072233C89E49324 /* Pods_Project3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E589ACAE104168DCD3791D26 /* Pods-Project3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project3/Pods-Project3.debug.xcconfig"; sourceTree = "<group>"; };
+		E94CFDF41FD3740100549E06 /* LostPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostPasswordViewController.swift; sourceTree = "<group>"; };
+		E94CFDF61FD3899B00549E06 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
+		E9FC11211FD3C34900668311 /* MainRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRestViewController.swift; sourceTree = "<group>"; };
+		E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 				135099851FD150450069037A /* Project3-Bridging-Header.h */,
 				135099991FD151890069037A /* Info.plist */,
 				1350999B1FD21B580069037A /* Restaurant.swift */,
+				E94CFDF41FD3740100549E06 /* LostPasswordViewController.swift */,
+				E94CFDF61FD3899B00549E06 /* UserSettingsViewController.swift */,
+				E9FC11211FD3C34900668311 /* MainRestViewController.swift */,
+				E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */,
 			);
 			path = Project3;
 			sourceTree = "<group>";
@@ -252,12 +264,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9FC11241FD3DB3500668311 /* RestSettingsViewController.swift in Sources */,
 				1350999E1FD35A6A0069037A /* ViewController.swift in Sources */,
 				1350999C1FD21B580069037A /* Restaurant.swift in Sources */,
+				E9FC11221FD3C34900668311 /* MainRestViewController.swift in Sources */,
 				135099941FD150480069037A /* IntrestBox.swift in Sources */,
 				135099911FD150480069037A /* QRScanViewController.swift in Sources */,
+				E94CFDF71FD3899B00549E06 /* UserSettingsViewController.swift in Sources */,
 				135099921FD150480069037A /* RegisterViewController.swift in Sources */,
 				135099901FD150480069037A /* InterestBox.m in Sources */,
+				E94CFDF51FD3740100549E06 /* LostPasswordViewController.swift in Sources */,
 				139D53541FD14E1A0088D2F3 /* AppDelegate.swift in Sources */,
 				135099841FD14FDA0069037A /* LogInViewController.swift in Sources */,
 				135099931FD150480069037A /* ChartCreator.swift in Sources */,
