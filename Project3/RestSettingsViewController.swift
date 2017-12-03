@@ -9,23 +9,29 @@
 import UIKit
 import Alamofire
 
-class RestSettingsViewController: UIViewController {
+class RestSettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var addressField: UITextView!
     @IBOutlet weak var descriptionField: UITextView!
+    @IBOutlet weak var imagePicked: UIImageView!
     
     let preferences = UserDefaults.standard
-    let URL_USER_GETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/get_settings"
-    let URL_USER_SETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/set_settings_rest"
+    let URL_REST_GETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/get_settings"
+    let URL_REST_SETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/set_settings_rest"
+    let URL_REST_IMAGE = "http://gmonna.pythonanywhere.com/rest_api/v1.0/upload_image"
+    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
         
         let parameters: Parameters=[
             "email": preferences.object(forKey: "userEmail") as! String,
             "type": preferences.object(forKey: "userType") as! String
         ]
         
-        Alamofire.request(URL_USER_GETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
+        Alamofire.request(URL_REST_GETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
             response in
             print(response)
             
@@ -42,6 +48,13 @@ class RestSettingsViewController: UIViewController {
         }
     }
     
+    @IBAction func loadImageButtonTapped(_ sender: Any) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+                
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     @IBAction func changeSettings(_ sender: Any) {
         let parameters: Parameters=[
             "email": preferences.object(forKey: "userEmail") as! String,
@@ -49,7 +62,7 @@ class RestSettingsViewController: UIViewController {
             "desc": self.descriptionField.text!
         ]
         
-        Alamofire.request(URL_USER_SETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
+        Alamofire.request(URL_REST_SETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
             {
                 response in
                 //printing response
@@ -67,19 +80,59 @@ class RestSettingsViewController: UIViewController {
                             NSLog("The \"OK\" alert occured.")
                         }))
                         self.present(alert, animated: true, completion: nil)
-                    } else {
-                        let alert = UIAlertController(title: "Settings updated", message: jsonData.object(forKey: "message") as? String, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
-                            NSLog("The \"OK\" alert occured.")
-                        }))
-                        self.present(alert, animated: true, completion: nil)
                     }
                 }
+            }
+        
+        let headers: HTTPHeaders = [
+            "Content-type": "multipart/form-data"
+        ]
+        
+        let parameters_two: Parameters=[
+            "email": preferences.object(forKey: "userEmail") as! String
+        ]
+        
+        let imageData = UIImageJPEGRepresentation(imagePicked.image!, 0.7)
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in parameters_two {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            
+            if let data = imageData {
+                multipartFormData.append(data, withName: "image", fileName: "profile_image.jpg", mimeType: "image/jpeg")
+            }
+            
+        }, usingThreshold: UInt64.init(), to: URL_REST_IMAGE, method: .post, headers: headers) { (result) in
+            switch result{
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print("Succesfully uploaded")
+                    if let err = response.error {
+                        return
+                    }
+                }
+            case .failure(let error):
+                print("Error in upload: \(error.localizedDescription)")
+            }
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePicked.contentMode = .scaleAspectFit
+            imagePicked.image = pickedImage
+        }
+        
+        dismiss(animated:true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated:true, completion: nil)
     }
 }
