@@ -502,7 +502,4 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     @IBAction func didTouchMenuButton(_ sender: Any) {
         menuPanel.isHidden=false
     }
-
-
-
 }

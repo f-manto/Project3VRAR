@@ -51,7 +51,16 @@ class RestSettingsViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func loadImageButtonTapped(_ sender: Any) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
-                
+        
+        
+        /*
+         The sourceType property wants a value of the enum named        UIImagePickerControllerSourceType, which gives 3 options:
+         
+         UIImagePickerControllerSourceType.PhotoLibrary
+         UIImagePickerControllerSourceType.Camera
+         UIImagePickerControllerSourceType.SavedPhotosAlbum
+         
+         */
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -84,37 +93,62 @@ class RestSettingsViewController: UIViewController, UIImagePickerControllerDeleg
                 }
             }
         
-        let headers: HTTPHeaders = [
-            "Content-type": "multipart/form-data"
-        ]
-        
-        let parameters_two: Parameters=[
-            "email": preferences.object(forKey: "userEmail") as! String
-        ]
-        
-        let imageData = UIImageJPEGRepresentation(imagePicked.image!, 0.7)
-        
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            for (key, value) in parameters_two {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            }
+        if (imagePicked.image != nil) {
+            let headers: HTTPHeaders = [
+                "Content-type": "multipart/form-data"
+            ]
             
-            if let data = imageData {
-                multipartFormData.append(data, withName: "image", fileName: "profile_image.jpg", mimeType: "image/jpeg")
-            }
+            let final = preferences.object(forKey: "userEmail") as! String
+            let new_url = URL_REST_IMAGE + "?email=" + final
             
-        }, usingThreshold: UInt64.init(), to: URL_REST_IMAGE, method: .post, headers: headers) { (result) in
-            switch result{
-            case .success(let upload, _, _):
-                upload.responseJSON { response in
-                    print("Succesfully uploaded")
-                    if let err = response.error {
-                        return
+            let URL_im = try! URLRequest(url: new_url, method: .post, headers: headers)
+            let imageData = UIImageJPEGRepresentation(imagePicked.image!, 0.6)
+            
+            Alamofire.upload(multipartFormData: { (multipartFormData) in
+                
+                multipartFormData.append(imageData!, withName: "image", fileName: "profile_image.jpeg", mimeType: "image/jpeg")
+
+            }, with: URL_im, encodingCompletion: { (result) in
+                
+                switch result {
+                    
+                case .success(let upload, _, _):
+                    upload.responseJSON {
+                        response in
+                        //printing response
+                        print(response)
+                        
+                        //getting the json value from the server
+                        if let result = response.result.value {
+                            let jsonData = result as! NSDictionary
+                            
+                            //if there is no error
+                            let error = jsonData.value(forKey: "error") as! String
+                            if (error == "yes") {
+                                let alert = UIAlertController(title: "Error", message: jsonData.object(forKey: "message") as? String, preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                                    NSLog("The \"OK\" alert occured.")
+                                }))
+                                self.present(alert, animated: true, completion: nil)
+                            } else {
+                                let alert = UIAlertController(title: "Settings updated", message: jsonData.object(forKey: "message") as? String, preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                                    NSLog("The \"OK\" alert occured.")
+                                }))
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }
                     }
+                    
+                case .failure(_):
+                    let alert = UIAlertController(title: "Error", message: "Image uploading request failed", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                        NSLog("The \"OK\" alert occured.")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
-            case .failure(let error):
-                print("Error in upload: \(error.localizedDescription)")
-            }
+                
+            })
         }
     }
     
@@ -123,16 +157,35 @@ class RestSettingsViewController: UIViewController, UIImagePickerControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    // MARK: - ImagePicker Delegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePicked.contentMode = .scaleAspectFit
             imagePicked.image = pickedImage
         }
         
-        dismiss(animated:true, completion: nil)
+        
+        /*
+         
+         Swift Dictionary named “info”.
+         We have to unpack it from there with a key asking for what media information we want.
+         We just want the image, so that is what we ask for.  For reference, the available options are:
+         
+         UIImagePickerControllerMediaType
+         UIImagePickerControllerOriginalImage
+         UIImagePickerControllerEditedImage
+         UIImagePickerControllerCropRect
+         UIImagePickerControllerMediaURL
+         UIImagePickerControllerReferenceURL
+         UIImagePickerControllerMediaMetadata
+         
+         */
+        dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismiss(animated:true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion:nil)
     }
 }
