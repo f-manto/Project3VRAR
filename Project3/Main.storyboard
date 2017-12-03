@@ -593,13 +593,6 @@
                                     <action selector="next:" destination="eGn-KF-m6l" eventType="touchUpInside" id="YTz-pS-rbC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-fh-1bA">
-                                <rect key="frame" x="16" y="506" width="343" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="0.023286350454939653" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-R1-0Bv">
                                 <rect key="frame" x="134" y="356" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -625,7 +618,6 @@
                         <outlet property="emailField" destination="sYQ-tS-ydY" id="gzw-dP-XPJ"/>
                         <outlet property="passwordField" destination="rol-QJ-iVy" id="HvN-3v-jzW"/>
                         <outlet property="userType" destination="vtc-nO-ZKn" id="VUp-Kx-LZ8"/>
-                        <outlet property="warningLabel" destination="GBx-fh-1bA" id="xcF-z4-W1W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shQ-7m-Mhn" userLabel="First Responder" sceneMemberID="firstResponder"/>

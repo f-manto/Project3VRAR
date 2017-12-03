@@ -14,8 +14,9 @@ class RestSettingsViewController: UIViewController {
     @IBOutlet weak var descriptionField: UITextView!
     
     let preferences = UserDefaults.standard
-    let URL_USER_GETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/get_settings"
-    let URL_USER_SETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/set_settings_rest"
+    let URL_REST_GETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/get_settings"
+    let URL_REST_SETSETTINGS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/set_settings_rest"
+    let URL_REST_IMAGE = "http://gmonna.pythonanywhere.com/rest_api/v1.0/upload_image"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class RestSettingsViewController: UIViewController {
             "type": preferences.object(forKey: "userType") as! String
         ]
         
-        Alamofire.request(URL_USER_GETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
+        Alamofire.request(URL_REST_GETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON {
             response in
             print(response)
             
@@ -49,7 +50,7 @@ class RestSettingsViewController: UIViewController {
             "desc": self.descriptionField.text!
         ]
         
-        Alamofire.request(URL_USER_SETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
+        Alamofire.request(URL_REST_SETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
             {
                 response in
                 //printing response
@@ -75,7 +76,8 @@ class RestSettingsViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
-        }
+            }
+        
     }
     
     override func didReceiveMemoryWarning() {
