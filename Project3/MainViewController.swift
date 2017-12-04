@@ -12,16 +12,22 @@ import Alamofire
 
 let URL_USER_LOGOUT = "http://gmonna.pythonanywhere.com/rest_api/v1.0/logout"
 
-class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
     let locationManager = CLLocationManager()
+    let searchController = UISearchController(searchResultsController: nil)
+    
     let companyName = ["apple", "amazon"]
     let share = [1, 2]
     
     var restaurants = [Restaurant]()
+    var currentRestaurants = [Restaurant]()
     
     let URL_LOAD_RESTAURANTS = "http://gmonna.pythonanywhere.com/rest_api/v1.0/load_restaurants"
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         
         loadRestaurants()
-        
+        setUpSearchBar()
         let preferences = UserDefaults.standard
         self.nameLabel.text = preferences.object(forKey: "userName") as? String
         
@@ -63,15 +69,21 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
         
     }
     
+    private func setUpSearchBar() {
+        searchBar.delegate = self
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
+        return currentRestaurants.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = restaurants[indexPath.row].name
-        cell?.detailTextLabel?.text = restaurants[indexPath.row].address
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else{
+        return UITableViewCell()
+        }
+        cell.textLabel?.text = currentRestaurants[indexPath.row].name
+        cell.detailTextLabel?.text = currentRestaurants[indexPath.row].address
         
-        return cell!
+        return cell
     }
 
     
@@ -152,18 +164,43 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                         let restaurant = Restaurant(toParse: restDict)
                         self.restaurants.append(restaurant)
                         
-                        
                     }
                     
-                    
+                    self.currentRestaurants = self.restaurants
                     print("here")
-                    self.tableView.delegate = self
-                    self.tableView.dataSource = self
+                    print(self.restaurants)
+                    print(self.currentRestaurants)
+                    self.loadTable()
                     
                 }
-                
-
+            }
+    }
+    
+    func loadTable(){
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        print("dajeeee")
+        guard !searchText.isEmpty else {
+            currentRestaurants = restaurants
+            print("minchia zio vuota")
+            self.loadTable()
+            tableView.reloadData()
+            return
         }
+        
+        currentRestaurants = restaurants.filter({ restaurant -> Bool in
+            return restaurant.name.lowercased().contains(searchText.lowercased())
+            //guard let text = searchBar.text else { return false }
+            //return restaurant.name.contains(text)
+        })
+        print("Minchia zio filtrato")
+        tableView.reloadData()
+        self.loadTable()
+        //tableView.reloadData()
+        return
     }
     
     @IBAction func logOut(_ sender: Any) {
@@ -187,11 +224,16 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UITableVi
                     let jsonData = result as! NSDictionary
                     
                     //if there is no error
-                    let error = jsonData.value(forKey: "error") as! String
-                    if (error == "yes") {
-                        print(jsonData.value(forKey: "message") as! String)
+                    let done = jsonData.value(forKey: "done") as! String
+                    if (done == "You are not logged") {
+                        print("You are not logged")
                     }
                     else{
+                        let alert = UIAlertController(title: "Log out", message: "You have been successfully logged out.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                            NSLog("The \"OK\" alert occured.")
+                        }))
+                        self.present(alert, animated: true, completion: nil)
                         let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "LogIn") as! UIViewController
                         self.navigationController?.pushViewController(mainViewController, animated: true)
                         self.dismiss(animated: false, completion: nil)
