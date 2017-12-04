@@ -119,4 +119,7 @@ class RegisterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

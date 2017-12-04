@@ -90,13 +90,26 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
             sex = "female"
         }
         
+        let selectedValue = pickerData[activityLevelPicker.selectedRow(inComponent: 0)]
+        if (selectedValue == "Very Low") {
+            self.pickerValue = "low"
+        } else if (selectedValue == "Low") {
+            self.pickerValue = "slight"
+        } else if (selectedValue == "Medium") {
+            self.pickerValue = "medium"
+        } else if (selectedValue == "High") {
+            self.pickerValue = "very"
+        } else {
+            self.pickerValue = "high"
+        }
+        
         let parameters: Parameters=[
             "email": preferences.object(forKey: "userEmail") as! String,
             "sex": sex,
             "height": self.heightField.text!,
             "weight": self.weightField.text!,
             "dob": strDate,
-            "act_level": pickerValue!
+            "act_level": self.pickerValue!
         ]
         
         Alamofire.request(URL_USER_SETSETTINGS, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
@@ -147,15 +160,19 @@ class UserSettingsViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     private func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) {
         if (row == 0) {
-            pickerValue = "low"
+            self.pickerValue = "low"
         } else if (row == 1) {
-            pickerValue = "slight"
+            self.pickerValue = "slight"
         } else if (row == 2) {
-            pickerValue = "medium"
+            self.pickerValue = "medium"
         } else if (row == 3) {
-            pickerValue = "very"
+            self.pickerValue = "very"
         } else {
-            pickerValue = "high"
+            self.pickerValue = "high"
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
