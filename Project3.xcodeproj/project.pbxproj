@@ -27,6 +27,9 @@
 		E94CFDF71FD3899B00549E06 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94CFDF61FD3899B00549E06 /* UserSettingsViewController.swift */; };
 		E97F2A8C1FD48B33002A7232 /* MenuRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F2A8B1FD48B33002A7232 /* MenuRestViewController.swift */; };
 		E97F2A8E1FD49518002A7232 /* PDFMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F2A8D1FD49518002A7232 /* PDFMenuViewController.swift */; };
+		E9812E541FD4E32A007A50B6 /* UploadModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9812E531FD4E32A007A50B6 /* UploadModelViewController.swift */; };
+		E9852B371FD4C1420054E6C3 /* MenuSectionRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9852B361FD4C1420054E6C3 /* MenuSectionRestViewController.swift */; };
+		E9852B391FD4C2220054E6C3 /* AddMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9852B381FD4C2220054E6C3 /* AddMenuItemViewController.swift */; };
 		E9FC11221FD3C34900668311 /* MainRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC11211FD3C34900668311 /* MainRestViewController.swift */; };
 		E9FC11241FD3DB3500668311 /* RestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +60,9 @@
 		E94CFDF61FD3899B00549E06 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		E97F2A8B1FD48B33002A7232 /* MenuRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRestViewController.swift; sourceTree = "<group>"; };
 		E97F2A8D1FD49518002A7232 /* PDFMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFMenuViewController.swift; sourceTree = "<group>"; };
+		E9812E531FD4E32A007A50B6 /* UploadModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadModelViewController.swift; sourceTree = "<group>"; };
+		E9852B361FD4C1420054E6C3 /* MenuSectionRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSectionRestViewController.swift; sourceTree = "<group>"; };
+		E9852B381FD4C2220054E6C3 /* AddMenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuItemViewController.swift; sourceTree = "<group>"; };
 		E9FC11211FD3C34900668311 /* MainRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRestViewController.swift; sourceTree = "<group>"; };
 		E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +123,9 @@
 				E9FC11231FD3DB3500668311 /* RestSettingsViewController.swift */,
 				E97F2A8B1FD48B33002A7232 /* MenuRestViewController.swift */,
 				E97F2A8D1FD49518002A7232 /* PDFMenuViewController.swift */,
+				E9852B361FD4C1420054E6C3 /* MenuSectionRestViewController.swift */,
+				E9852B381FD4C2220054E6C3 /* AddMenuItemViewController.swift */,
+				E9812E531FD4E32A007A50B6 /* UploadModelViewController.swift */,
 			);
 			path = Project3;
 			sourceTree = "<group>";
@@ -220,10 +229,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Project3/Pods-Project3-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -277,10 +292,13 @@
 				E97F2A8E1FD49518002A7232 /* PDFMenuViewController.swift in Sources */,
 				E97F2A8C1FD48B33002A7232 /* MenuRestViewController.swift in Sources */,
 				135099941FD150480069037A /* IntrestBox.swift in Sources */,
+				E9812E541FD4E32A007A50B6 /* UploadModelViewController.swift in Sources */,
 				135099911FD150480069037A /* QRScanViewController.swift in Sources */,
 				E94CFDF71FD3899B00549E06 /* UserSettingsViewController.swift in Sources */,
 				135099921FD150480069037A /* RegisterViewController.swift in Sources */,
+				E9852B371FD4C1420054E6C3 /* MenuSectionRestViewController.swift in Sources */,
 				135099901FD150480069037A /* InterestBox.m in Sources */,
+				E9852B391FD4C2220054E6C3 /* AddMenuItemViewController.swift in Sources */,
 				E94CFDF51FD3740100549E06 /* LostPasswordViewController.swift in Sources */,
 				139D53541FD14E1A0088D2F3 /* AppDelegate.swift in Sources */,
 				135099841FD14FDA0069037A /* LogInViewController.swift in Sources */,
